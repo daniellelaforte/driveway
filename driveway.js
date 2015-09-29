@@ -12,13 +12,9 @@ angular.module ('driveway',[])
 
    				map = new google.maps.Map(document.getElementById('map'),mapOptions);
 
-   				
-
   				// document.getElementById('submit').addEventListener('click', function() {
-    		// 	geocodeAddress(geocoder, map);
-  				// 	});
-
-   				
+    			// 	geocodeAddress(geocoder, map);
+  				// 	});	
     		
 		}
 
@@ -26,13 +22,12 @@ angular.module ('driveway',[])
 		
 
 var drivewayControllerFunc = function ($scope) {
-					
+var clickedMarkerTitle = {};					
 $scope.Submit = function () {
 
 
 var geocoder = new google.maps.Geocoder();
 				function geocodeAddress(geocoder, resultsMap) {
-  				// var address = document.getElementById('address').value;
   				var address = $scope.address;
   				geocoder.geocode({'address': address}, function(results, status) {
     			if (status === google.maps.GeocoderStatus.OK) {
@@ -45,13 +40,22 @@ var geocoder = new google.maps.Geocoder();
       				})
 
 
-		google.maps.event.addListener(marker, 'click', function(event) {
-       		 				marker.setMap(null);
-    						});
+
+				google.maps.event.addListener(marker, 'click', function(event) {
+        		 		// marker.setMap(null);
+        			clickedMarkerTitle = marker;
+    			});	
+
+        		document.getElementById('parkhere').addEventListener('click', function() {
+    				// marker.setMap(null);
+    				clickedMarkerTitle.setMap(null); 			
+    			});
     						
-    						google.maps.event.addListener(marker, 'mouseover', function(event) {
-       		 				console.log(marker.title)
+    			google.maps.event.addListener(marker, 'mouseover', function(event) {
+       		 		console.log(marker.title)
     						});
+
+
     			} else {
       				alert('Geocode was not successful for the following reason: ' + status);
     					}
@@ -64,10 +68,10 @@ var geocoder = new google.maps.Geocoder();
         geocodeAddress(geocoder, map);
 
 
-// google.maps.event.addListener(map, 'click', function(event) {
+					// google.maps.event.addListener(map, 'click', function(event) {
         	   
-//         	       		 	var marker = new google.maps.Marker({
-//     		    				position: event.latLng,
+//         	       		 	 var marker = new google.maps.Marker({
+//     		    					position: event.latLng,
 //        		 					map: map,
 //        		 					title: location.toString(),
 //    							});
@@ -75,12 +79,7 @@ var geocoder = new google.maps.Geocoder();
 
 }
 
-
-
 }
-
-
-
 
 
 
