@@ -1,0 +1,20 @@
+html, body { 
+	height: 100%; 
+	margin: 0; 
+	padding: 0; 
+}
+
+#map { 
+	position: relative;
+	height: 100%; 
+}
+
+.markerDiv {
+	position: absolute;
+	width: 3em;
+	height: 3em;
+	border: solid 1px;
+	text-align: center;
+	color: red;
+	background-color:rgba(192,192,192,0.3);
+}
