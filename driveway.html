@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta charset="utf-8">
+	<title>JS12: Gold Rush</title>
+	<link rel="stylesheet" type="text/css" href="normalize.css">
+	<link rel="stylesheet" type="text/css" href="googleAPI.css">
+</head>
+<body>
+	
+	<div id="map"></div>
+
+	<script type="text/javascript">
+	
+		var map;
+		function initMap() {
+    			var CO = new google.maps.LatLng(40.018005,-105.278430);
+    			var mapOptions = {
+        			zoom: 12,
+        			center: CO,
+    			}
+   				 map = new google.maps.Map(document.getElementById('map'),mapOptions);
+    			google.maps.event.addListener(map, 'click', function(event) {
+        	   
+        	        var marker = new google.maps.Marker({
+    		    		position: event.latLng,
+       		 			map: map,
+       		 			title: location.toString(),
+   					});
+    				google.maps.event.addListener(marker, 'click', function(event) {
+       		 			marker.setMap(null);
+    				});
+    				google.maps.event.addListener(marker, 'mouseover', function(event) {
+       		 			console.log(marker.title)
+    				});
+   				});
+		}	
+		
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0mw4NLJ7pP3LBhu7zBuis_Xg17GJWxAk&callback=initMap">
+   	</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
