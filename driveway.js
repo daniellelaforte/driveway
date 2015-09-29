@@ -9,59 +9,73 @@ angular.module ('driveway',[])
         			zoom: 13,
         			center: CO,
     			}
-   				 map = new google.maps.Map(document.getElementById('map'),mapOptions);
-    			google.maps.event.addListener(map, 'click', function(event) {
-        	   
-        	        var marker = new google.maps.Marker({
-    		    		position: event.latLng,
-       		 			map: map,
-       		 			title: location.toString(),
-   					});
-    				google.maps.event.addListener(marker, 'click', function(event) {
-       		 			marker.setMap(null);
-    				});
-    				google.maps.event.addListener(marker, 'mouseover', function(event) {
-       		 			console.log(marker.title)
-    				});
-   				});
+
+   				map = new google.maps.Map(document.getElementById('map'),mapOptions);
+
+   				
+
+  				// document.getElementById('submit').addEventListener('click', function() {
+    		// 	geocodeAddress(geocoder, map);
+  				// 	});
+
+   				
+    		
 		}
+
+
 		
-//Defining the Controller function: mainControllerFunc
+
 var drivewayControllerFunc = function ($scope) {
+					
+$scope.Submit = function () {
+
+
+var geocoder = new google.maps.Geocoder();
+				function geocodeAddress(geocoder, resultsMap) {
+  				// var address = document.getElementById('address').value;
+  				var address = $scope.address;
+  				geocoder.geocode({'address': address}, function(results, status) {
+    			if (status === google.maps.GeocoderStatus.OK) {
+      				resultsMap.setCenter(results[0].geometry.location);
+      				var marker = new google.maps.Marker({
+        				map: resultsMap,
+        				position: results[0].geometry.location
+
+
+      				})
+
+
+		google.maps.event.addListener(marker, 'click', function(event) {
+       		 				marker.setMap(null);
+    						});
+    						
+    						google.maps.event.addListener(marker, 'mouseover', function(event) {
+       		 				console.log(marker.title)
+    						});
+    			} else {
+      				alert('Geocode was not successful for the following reason: ' + status);
+    					}
+  				});
 
 
 
+		}
+			
+        geocodeAddress(geocoder, map);
 
 
+// google.maps.event.addListener(map, 'click', function(event) {
+        	   
+//         	       		 	var marker = new google.maps.Marker({
+//     		    				position: event.latLng,
+//        		 					map: map,
+//        		 					title: location.toString(),
+//    							});
 
 
+}
 
 
-
-
-	// $scope.positionArray = []
-	// $scope.xPosition = 0
-	// $scope.yPosition = 0
-
-	// $scope.mapClick = function (event) {
-	// 	var goldLocation = {
-	// 		xposition: $scope.xPosition = (event.pageX - 24),
-	// 		yposition: $scope.yPosition = (event.pageY - 24),
-	// 		comments: prompt('Comments: '),
-	// 		commentVisibility: false,
-	// 	} 
-	// 	$scope.positionArray.push(goldLocation)
-	// 	console.log($scope.positionArray)
-	// }
-
-	// $scope.removeMarker = function (index) {
-	// 	$scope.positionArray.splice(index,1)
-
-	// }
-
-	// $scope.showComment = function (index) {
-	// 	$scope.positionArray[index].commentVisibility = !$scope.positionArray[index].commentVisibility
-	// }
 
 }
 
