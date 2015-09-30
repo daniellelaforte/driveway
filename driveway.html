@@ -79,8 +79,39 @@
 			</div>
 
 			<div ng-show="showaddressform" class="center">
-					<div clas> Address:<input type="text" ng-model="address"><br>
-  					<input ng-click="Submit()"  value="Submit"></div>
+					<!-- <div clas> Address:<input type="text" ng-model="address"><br>
+  					<input ng-click="Submit()"  value="Submit"></div> -->
+
+  					<form>
+ 					<div class="form-group">
+    					<label >Street Address</label>
+    					<input ng-model="street" type="text" class="form-control"  placeholder="Street Address">
+  					</div>
+  					<div class="form-group">
+    					<label >City</label>
+    					<input ng-model="city" type="text" class="form-control"  placeholder="City">
+  					</div>
+  					<div class="form-group">
+    					<label >State</label>
+    					<input ng-model="state" type="text" class="form-control"  placeholder="State">
+  					</div>
+  					<div class="form-group">
+    					<label >Zip</label>
+    					<input ng-model="zip" type="text" class="form-control"  placeholder="Zip">
+  					</div>
+  					
+ 				    <div class="form-group">
+    					<label for="exampleInputFile">Upload an Image of Your Curb</label>
+    					<input type="file" id="exampleInputFile">
+    					<p class="help-block" style="color:black">Make the image as clear as possible.  Show the whole curb and show the house in the background so it is easily findable.</p>
+  					</div>
+  					<!-- <div class="checkbox">
+    					<label>
+      					<input type="checkbox"> Check me out
+    					</label>
+  					</div> -->
+  						<button ng-click="Submit()" type="submit" class="btn btn-default">Submit</button>
+					</form>
 			</div>
 		</div>
 

@@ -39,6 +39,7 @@ var drivewayControllerFunc = function ($scope) {
 	$scope.Submit = function () {
 		$scope.showaddressform = false;
 		$scope.showmap = true;
+		$scope.address = $scope.street + " " + $scope.city + " " + $scope.state + " " + $scope.zip;
 
 		var geocoder = new google.maps.Geocoder();
 				function geocodeAddress(geocoder, resultsMap) {
@@ -48,7 +49,8 @@ var drivewayControllerFunc = function ($scope) {
       				resultsMap.setCenter(results[0].geometry.location);
       				var marker = new google.maps.Marker({
         				map: resultsMap,
-        				position: results[0].geometry.location
+        				position: results[0].geometry.location,
+        				title: "hello"
 
 
       				})
