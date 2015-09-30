@@ -62,9 +62,8 @@ var drivewayControllerFunc = function ($scope) {
       					'<div id="siteNotice">'+
       					'</div>'+
       					'<div id="bodyContent">' + 
-      					'<p><b>' + $scope.street + '</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-      					'sandstone rock formation in the southern part of the '+
-      					'Heritage Site.</p>'+
+      					'<p><b>' + $scope.street + '</b><br>' +
+      					'Available: ' + $scope.time + '</p>'+
       					'<img src="curbtopark.png"'+
       					'</div>'+
       					'</div>';
