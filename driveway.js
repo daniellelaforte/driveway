@@ -33,6 +33,11 @@ angular.module ('driveway',[])
 		$scope.showAddressForm = function () {
 			$scope.showaddressform = true;
 			$scope.showmap = false;
+			$scope.street = "";
+			$scope.city = "";
+			$scope.state = "";
+			$scope.zip = "";
+			$scope.time1 = "";
 		}
 
 
@@ -80,6 +85,7 @@ angular.module ('driveway',[])
 				google.maps.event.addListener(marker, 'click', function(event) {
         		 		// marker.setMap(null);
         			clickedMarkerTitle = marker;
+
     			});	
 
         		document.getElementById('parkhere').addEventListener('click', function() {
@@ -96,9 +102,15 @@ angular.module ('driveway',[])
       				alert('Geocode was not successful for the following reason: ' + status);
     					}
   				});
-
+		
 		
 		}
+
+		// $scope.street = "";
+		// $scope.city = "";
+		// $scope.state = "";
+		// $scope.zip = "";
+		// $scope.time1 = "";
 			
         geocodeAddress(geocoder, map);
 
