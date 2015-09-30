@@ -39,6 +39,7 @@ var drivewayControllerFunc = function ($scope) {
 	$scope.Submit = function () {
 		$scope.showaddressform = false;
 		$scope.showmap = true;
+		var image = 'redcaricon.png';
 		$scope.address = $scope.street + " " + $scope.city + " " + $scope.state + " " + $scope.zip;
 
 		var geocoder = new google.maps.Geocoder();
@@ -50,7 +51,8 @@ var drivewayControllerFunc = function ($scope) {
       				var marker = new google.maps.Marker({
         				map: resultsMap,
         				position: results[0].geometry.location,
-        				title: "hello"
+        				title: $scope.street,
+        				icon: image
 
 
       				})
