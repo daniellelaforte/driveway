@@ -26,24 +26,24 @@ angular.module ('driveway',[])
 				});
 		}		
 
-var drivewayControllerFunc = function ($scope) {
-	$scope.showmap = true;
-	var clickedMarkerTitle = {};
-
-	$scope.showAddressForm = function () {
-		$scope.showaddressform = true;
-		$scope.showmap = false;
-	}
-
-
-	$scope.Submit = function () {
-		$scope.showaddressform = false;
+		var drivewayControllerFunc = function ($scope) {
 		$scope.showmap = true;
-		var parkimage = 'curbtopark.png';
-		var image = 'blackcar.png';
-		$scope.address = $scope.street + " " + $scope.city + " " + $scope.state + " " + $scope.zip;
+		var clickedMarkerTitle = {};
 
-		var geocoder = new google.maps.Geocoder();
+		$scope.showAddressForm = function () {
+			$scope.showaddressform = true;
+			$scope.showmap = false;
+		}
+
+
+		$scope.Submit = function () {
+			$scope.showaddressform = false;
+			$scope.showmap = true;
+			var parkimage = 'curbtopark.png';
+			var image = 'blackcar.png';
+			$scope.address = $scope.street + " " + $scope.city + " " + $scope.state + " " + $scope.zip;
+
+			var geocoder = new google.maps.Geocoder();
 				function geocodeAddress(geocoder, resultsMap) {
   				var address = $scope.address;
   				geocoder.geocode({'address': address}, function(results, status) {
@@ -53,25 +53,26 @@ var drivewayControllerFunc = function ($scope) {
         				map: resultsMap,
         				position: results[0].geometry.location,
         				title: $scope.street,
-        				icon: image
+        				icon: image,
+        				times: $scope.time1
 
 
       				})
 
-      				var contentString = '<div id="content">'+
-      					'<div id="siteNotice">'+
-      					'</div>'+
-      					'<div id="bodyContent">' + 
-      					'<p><b>' + $scope.street + '</b><br>' +
-      					'Available: ' + $scope.time + '</p>'+
-      					'<img src="curbtopark.png"'+
-      					'</div>'+
-      					'</div>';
+      		var contentString = '<div id="content">'+
+      			'<div id="siteNotice">'+
+      			'</div>'+
+      			'<div id="bodyContent">' + 
+      			'<p><b>' + marker.title + '</b><br>' +
+      			'Available: ' + marker.times + '</p>'+
+      			'<img src="curbtopark.png"'+
+      			'</div>'+
+      			'</div>';
 
 
-  					var infowindow = new google.maps.InfoWindow({
-    						content: contentString,
-    						maxWidth: 200
+  			var infowindow = new google.maps.InfoWindow({
+    				content: contentString,
+    				maxWidth: 200
   						});
 
 
@@ -88,7 +89,7 @@ var drivewayControllerFunc = function ($scope) {
     						
     			google.maps.event.addListener(marker, 'click', function(event) {
        		 		infowindow.open(map, marker);
-    						});
+    			});
 
 
     			} else {
@@ -96,8 +97,7 @@ var drivewayControllerFunc = function ($scope) {
     					}
   				});
 
-
-
+		
 		}
 			
         geocodeAddress(geocoder, map);
