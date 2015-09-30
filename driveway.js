@@ -6,7 +6,7 @@ angular.module ('driveway',[])
 		function initMap() {
     			var CO = new google.maps.LatLng(40.018005,-105.278430);
     			var mapOptions = {
-        			zoom: 13,
+        			zoom: 14,
         			center: CO,
     			}
 
