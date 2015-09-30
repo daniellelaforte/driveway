@@ -1,13 +1,13 @@
 //Setting an Angular module: 
 angular.module ('driveway',[])
 
-	
+		var center1;
 		var map;
 		function initMap() {
-    			var CO = new google.maps.LatLng(40.018005,-105.278430);
+    			// var CO = new google.maps.LatLng(40.018005,-105.278430);
     			var mapOptions = {
         			zoom: 14,
-        			center: CO,
+        			center: new google.maps.LatLng(40.018005,-105.278430),
     			}
 
    				map = new google.maps.Map(document.getElementById('map'),mapOptions);
@@ -15,18 +15,32 @@ angular.module ('driveway',[])
   				// document.getElementById('submit').addEventListener('click', function() {
     			// 	geocodeAddress(geocoder, map);
   				// 	});	
-    		
-		}
-
-
-		
+    		function calculateCenter() {
+  					center1 = map.getCenter();
+				}
+			google.maps.event.addDomListener(map, 'idle', function() {
+  				calculateCenter();
+				});
+			google.maps.event.addDomListener(window, 'resize', function() {
+  				map.setCenter(center1);
+				});
+		}		
 
 var drivewayControllerFunc = function ($scope) {
-var clickedMarkerTitle = {};					
-$scope.Submit = function () {
+	$scope.showmap = true;
+	var clickedMarkerTitle = {};
+
+	$scope.showAddressForm = function () {
+		$scope.showaddressform = true;
+		$scope.showmap = false;
+	}
 
 
-var geocoder = new google.maps.Geocoder();
+	$scope.Submit = function () {
+		$scope.showaddressform = false;
+		$scope.showmap = true;
+
+		var geocoder = new google.maps.Geocoder();
 				function geocodeAddress(geocoder, resultsMap) {
   				var address = $scope.address;
   				geocoder.geocode({'address': address}, function(results, status) {
